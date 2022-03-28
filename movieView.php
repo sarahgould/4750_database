@@ -6,7 +6,6 @@ require('imdb_db.php');
 $title = $_COOKIE["movie_to_view"];
 $movie_to_view = getMovie_byTitle($title);
 $poster_link = getPoster_byTitle($title);
-echo $poster_link['Poster_Link'];
 $list_of_stars = getStarNames_byTitle($title);
 $list_of_genres = getGenres_byTitle($title);
 
