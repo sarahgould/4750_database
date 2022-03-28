@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Gross: <?php echo $movie_to_view['Gross']; ?> <br>
                 Runtime (min): <?php echo $movie_to_view['Runtime']; ?> <br>
                 IMDB Rating: <?php echo $movie_to_view['IMDB_Rating']; ?> <br>
-                Director: <?php echo $movie_to_view['IMDB_Rating']; ?> <br>
+                Director: <?php echo $movie_to_view['Director']; ?> <br>
                 <br>
                 Genre(s): <br>
                     <?php foreach ($list_of_genres as $genre):  ?>
