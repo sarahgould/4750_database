@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="w3-col s4 w3-center" style="padding: 20px;">
             <div class="card">
                 <p>Movie Info:</p> 
-                Released Year: <?php echo $movie_to_view['Year']; ?> <br>
+                Released Year: <?php echo $movie_to_view['Released_Year']; ?> <br>
                 Gross: <?php echo $movie_to_view['Gross']; ?> <br>
                 Runtime (min): <?php echo $movie_to_view['Runtime']; ?> <br>
                 IMDB Rating: <?php echo $movie_to_view['IMDB_Rating']; ?> <br>
