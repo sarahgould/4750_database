@@ -7,6 +7,7 @@ $list_of_movies = getAllMovies();
 $movie_to_update = null;
 $movie_to_view = null;
 $open_menu = null;
+$search_tilte = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Add") {
@@ -28,6 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Confirm Update") {
     updateMovie($_POST['title'], $_POST['year'], $_POST['gross'], $_POST['runtime'], $_POST['rating'], $_POST['director']);
+    $list_of_movies = getAllMovies();
+  }
+  if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Search") {
+    $list_of_movies = getSearchedMovies($_POST['titleFilter']);
+    $search_filter = $_POST['titleFilter'];
+  }
+  else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Revert Search") {
     $list_of_movies = getAllMovies();
   }
 }
@@ -170,12 +178,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <hr/>
 
     <h2 style="text-align: center; font-size: 40px;">All Movies</h2>
-    <!-- <b>Search For Movie by Series Title: 
-          <input id="titleFilter" type="text" style="color: black;" 
-                 placeholder="Search here">
-    </b> 
-    </br> -->
-    <?php 
+    <hr/>
+    <form action="sampleImdb.php" method="post" id="searchMovie">
+        <b>Search by Series Title: 
+            <input name="titleFilter" type="text" style="color: black;" 
+                    placeholder="Search Here"> </b>
+            <input type="submit" value="Search" name="btnAction"
+                class="btn btn-info" />
+            <input type="submit" value="Revert Search" name="btnAction"
+                class="btn btn-danger" />
+    </form>
+    <hr/>
+    <?php if($search_filter != null) : ?>
+        <em style="color: white; margin-left: 25px;">Showing results for 
+            <?php echo $search_filter?>...</em>
+    <?php endif; ?>
+    <?php
     $i = 0;
     foreach ($list_of_movies as $movie):  ?>
     <div class="card mt-4" style="margin-left: 25px; width: 600px; padding:5px;">

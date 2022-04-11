@@ -160,4 +160,15 @@ function deletePosterLink($posterLink, $title) {
     $statement->execute();
 }
 
+function getSearchedMovies($titleFilter) {
+    global $db;
+	$query = "select * from Movies where Series_Title like '%" . $titleFilter . "%'";
+	$statement = $db->query($query); 
+        
+    // fetchAll() returns an array of all rows in the result set
+    $results = $statement->fetchAll();   
+    $statement->closeCursor();
+    return $results;
+}
+
 ?>
