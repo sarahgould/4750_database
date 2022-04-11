@@ -18,7 +18,7 @@ function addMovie($title, $year, $gross, $runtime, $rating, $director) {
 
 function getAllMovies() {
 	global $db;
-	$query = "select * from Movies";
+	$query = "select * from Movies order by IMDB_Rating desc";
 	$statement = $db->query($query); 
         
     // fetchAll() returns an array of all rows in the result set
