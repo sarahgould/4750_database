@@ -171,4 +171,11 @@ function getSearchedMovies($titleFilter) {
     return $results;
 }
 
+function loginUser($username, $email, $password) {
+    global $db;
+    $query = "insert ignore into User 
+    values('" . $username . "', '" . $email . "', '" . $password . "')";
+    $statement = $db->query($query);
+}
+
 ?>
