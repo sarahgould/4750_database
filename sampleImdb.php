@@ -2,12 +2,10 @@
 
 require('connect-imdb.php');
 require('imdb_db.php');
-
 $list_of_movies = getAllMovies();
 $movie_to_update = null;
 $movie_to_view = null;
 $open_menu = null;
-$search_tilte = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Add") {
@@ -31,16 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     updateMovie($_POST['title'], $_POST['year'], $_POST['gross'], $_POST['runtime'], $_POST['rating'], $_POST['director']);
     $list_of_movies = getAllMovies();
   }
-  if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Search") {
-    $list_of_movies = getSearchedMovies($_POST['titleFilter']);
-    $search_filter = $_POST['titleFilter'];
-  }
-  else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Revert Search") {
-    $list_of_movies = getAllMovies();
-  }
+  if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Submit Comment") {
+    submitComment($_POST['commentContent'], $_POST['commentTitle']);
+    }
 }
 
+
 ?>
+
+
 
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
@@ -116,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="header">
     <img src="IMDB-Logo.png" alt="IMDb logo" width="125" height="100" style="float:left;">
     <h1 style="color: #F6BE00; position: relative; top: 30px; font-family: Impact; font-size: 45px;">Movies Guide</h1>
+    
 </div>
 <br>
 <br>
@@ -176,24 +174,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <hr/>
-
+<div style="text-align: right; margin-right: 25px">
+<h2 style="color: white; font-size: 20px">Logged in as: <?php echo htmlspecialchars($_SESSION["username"]); ?></h2>
+<a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+</div>
     <h2 style="text-align: center; font-size: 40px;">All Movies</h2>
-    <hr/>
-    <form action="sampleImdb.php" method="post" id="searchMovie">
-        <b>Search by Series Title: 
-            <input name="titleFilter" type="text" style="color: black;" 
-                    placeholder="Search Here"> </b>
-            <input type="submit" value="Search" name="btnAction"
-                class="btn btn-info" />
-            <input type="submit" value="Revert Search" name="btnAction"
-                class="btn btn-danger" />
-    </form>
-    <hr/>
-    <?php if($search_filter != null) : ?>
-        <em style="color: white; margin-left: 25px;">Showing results for 
-            <?php echo $search_filter?>...</em>
-    <?php endif; ?>
-    <?php
+    <!-- <b>Search For Movie by Series Title: 
+          <input id="titleFilter" type="text" style="color: black;" 
+                 placeholder="Search here">
+    </b> 
+    </br> -->
+    <?php 
     $i = 0;
     foreach ($list_of_movies as $movie):  ?>
     <div class="card mt-4" style="margin-left: 25px; width: 600px; padding:5px;">
@@ -234,12 +225,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div>
             <button style="margin-left: 0px; width: 150px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $i; ?>">Comment on Movie</button>
             <div id="<?php echo $i; ?>" class="collapse">
+            <form action="sampleImdb.php" method="post" id="submit Comment">
                 <h5 style="color:black;">Title: <h5>
                 <input type="text" class="form-control" name="commentTitle">
                 <h5 style="color:black;">Content: <h5>
                 <input type="text" class="form-control" name="commentContent">
                 <br>
-                <input type="submit" value="Submit Comment" class="btn btn-secondary">
+                <input type="submit" name="btnAction" value="Submit Comment" class="btn btn-secondary">
+                </form>
             </div>
         </div>
 
