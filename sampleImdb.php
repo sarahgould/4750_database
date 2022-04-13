@@ -31,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     updateMovie($_POST['title'], $_POST['year'], $_POST['gross'], $_POST['runtime'], $_POST['rating'], $_POST['director']);
     $list_of_movies = getAllMovies();
   }
+  if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Submit Comment") {
+    submitComment($_POST['commentContent'], $_POST['commentTitle']);
+  }
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Search") {
     $list_of_movies = getSearchedMovies($_POST['titleFilter']);
     $search_filter = $_POST['titleFilter'];
@@ -176,6 +179,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <hr/>
+  <div style="text-align: right; margin-right: 25px">
+<h2 style="color: white; font-size: 20px">Logged in as: <?php echo htmlspecialchars($_SESSION["username"]); ?></h2>
+<a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+</div>
 
     <h2 style="text-align: center; font-size: 40px;">All Movies</h2>
     <hr/>
@@ -234,12 +241,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div>
             <button style="margin-left: 0px; width: 150px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $i; ?>">Comment on Movie</button>
             <div id="<?php echo $i; ?>" class="collapse">
+            <form action="sampleImdb.php" method="post" id="submit Comment">
                 <h5 style="color:black;">Title: <h5>
                 <input type="text" class="form-control" name="commentTitle">
                 <h5 style="color:black;">Content: <h5>
                 <input type="text" class="form-control" name="commentContent">
                 <br>
-                <input type="submit" value="Submit Comment" class="btn btn-secondary">
+                <input type="submit" name="btnAction" value="Submit Comment" class="btn btn-secondary">
+                </form>
             </div>
         </div>
 
