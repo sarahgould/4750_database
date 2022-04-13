@@ -3,14 +3,47 @@
 require('connect-imdb.php');
 require('imdb_db.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Login") {
-      loginUser($_POST['username'], $_POST['email'], $_POST['password']);
-    }
-}
-
-
 ?>
+
+<div style="margin-left: 25px">
+<?php
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Login") {
+            global $db;
+            $uname = mysqli_real_escape_string($link,$_POST['username']);
+            $password = mysqli_real_escape_string($link,$_POST['password']);
+          
+            $query = "select * from User where username='".$uname."'";
+            $res = mysqli_query($link,$query);
+            $userrow = mysqli_fetch_array($res);
+            $hashed_password = $userrow['password'];
+
+            if ($uname != "" && $password != ""){
+                
+                $sql_query = "select count(*) as cntUser from User where username='".$uname."'";
+                $result = mysqli_query($link,$sql_query);
+                $row = mysqli_fetch_array($result);
+
+                $count = $row['cntUser'];
+                
+                if(password_verify($password, $hashed_password)){
+                if($count > 0){
+                    
+                    $_SESSION['username'] = $uname;
+                    header('Location: sampleImdb.php');
+                    }
+                }else{
+                    echo "<p style='font-size: 20px; color: white'>" . "Invalid Username and/or Password" . "</p>";
+                }   
+
+            }   
+
+        }   
+}
+?>
+</div>
 
 <!-- 1. create HTML5 doctype -->
 <!DOCTYPE html>
@@ -73,25 +106,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <style>
     h2 {font-family: Impact; color: #F6BE00; text-align: center;}
     b {color: white;}
+    
+    .wrapper{ width: 360px; padding: 20px; }
+    
     </style>
 
 
 </head>
+ 
+    
 
     <body style="background-color: black;">
 
-      <h2 > Weclome to IMDB Movie Guide!</h2>
+    <h2 > Login to IMDB Movie Guide!</h2>
+    <div class="wrapper">
+        <form action="login.php" method="post" id="login User">
 
-      <form action="login.php" method="post" id="login User">
+            <b>Username:</b> <input type="text" class="form-control" name="username" id="username">
+            <b>Password: </b> <input type="password" class="form-control" name="password" id="password">
 
-        <b>Username:</b> <input type="text" class="form-control" name="username">
-        <b>Email: </b> <input type="text" class="form-control" name="email">
-        <b>Password: </b> <input type="text" class="form-control" name="password">
+            <input type="submit" value="Login" name="btnAction" class="btn btn-secondary"
+            title = "login user" />
 
-        <input type="submit" value="Login" name="btnAction" class="btn btn-secondary"
-        title = "login user" />
-
-    </form>
-
+        </form>
+    </div>
+    <p style="font-size: 20px; color: white; margin-left: 25px">Don't have an account? <a href="register.php">Sign up here</a>.</p>
     </body>
 </html>
