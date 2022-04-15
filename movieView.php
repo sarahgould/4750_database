@@ -8,10 +8,11 @@ $movie_to_view = getMovie_byTitle($title);
 $poster_link = getPoster_byTitle($title);
 $list_of_stars = getStarNames_byTitle($title);
 $list_of_genres = getGenres_byTitle($title);
+$list_of_comments = getComment_byTitle($title);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Back to Home") {
-        header("Location: http://localhost/cs4750/sampleImdb.php");
+        header("Location: sampleImdb.php");
     }
     if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Submit Star") {
         addStarName($_POST['starName'], $title);
@@ -233,6 +234,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     </div>   
     
+    <div style="font-size: 35px; text-align: center; font-family: Impact; color: #F6BE00;">Comments:</div>
+    <?php foreach ($list_of_comments as $comment):  ?>
+        <div class="card mt-4" style="background-color: white; margin-left: 25px; width: 600px; padding:5px;">
+            <div style="text-align: center; font-family: impact; font-size: 20px;" >
+                <?php echo $comment['title'] ?> <br> </div>
+            By: <?php echo $comment['username'] ?> <br>
+            <?php echo $comment['content'] ?>
+        </div>
+    <?php endforeach; ?> -->
+    <hr/>
+
+
     <form action="movieView.php"method="post">
         <input style="margin: 0 auto; display: block;" type="submit" value="Back to Home" name="btnAction" 
         class="btn btn-info" title="back home" />

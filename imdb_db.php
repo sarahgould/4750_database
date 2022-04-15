@@ -32,25 +32,31 @@ function registerUser($username, $email, $password) {
     }
 }
 
-function submitComment($content, $title){
+function submitComment($content, $title, $series_title){
     global $db;    
     //echo $_SESSION['username'];
     $username = $_SESSION['username'];
     echo $username;
     $query = "insert into Comment 
-    values('" . $username . "','".$content."','" . $title . "')";
-
+    values('" . $username . "','" . $series_title . "','".$content."','" . $title . "');
+    insert into belongTo values('" . $series_title . "','" . $username . "','".$title."','" . $content . "')";
     $statement = $db->query($query);
     
 }
-// function addComment($user, $title, $content) {
-//     // db handler
-//     global $db;
-//     // sql
-//     $query = "insert into comment values('" . $user . "', " . $title ." , " . $content .")";
-//     // execute
-//     $statement = $db->query($query);
-// }
+
+function getComment_byTitle($title) {
+    // db handler
+    global $db;
+    // sql
+    $query = "select * from Comment where Series_Title = :title";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':title', $title);
+    $statement->execute();
+
+    $results = $statement->fetchAll();   
+    $statement->closeCursor();
+    return $results;
+}
 
 function getAllMovies() {
 	global $db;

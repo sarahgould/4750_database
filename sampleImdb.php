@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "View Movie Page") {
     $movie_to_view = getMovie_byTitle($_POST['movie_to_view']);
     setcookie("movie_to_view", $movie_to_view['Series_Title']);
-    header("Location: http://localhost/cs4750/movieView.php");
+    header("Location: movieView.php");
   }
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Delete Movie") {
     deleteMovie($_POST['movie_to_delete']);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $list_of_movies = getAllMovies();
   }
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Submit Comment") {
-    submitComment($_POST['commentContent'], $_POST['commentTitle']);
+    submitComment($_POST['commentContent'], $_POST['commentTitle'], $_POST['seriesTitle']);
   }
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Search") {
     $list_of_movies = getSearchedMovies($_POST['titleFilter']);
@@ -247,6 +247,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h5 style="color:black;">Content: <h5>
                 <input type="text" class="form-control" name="commentContent">
                 <br>
+                <input type="hidden" name="seriesTitle" 
+                    value="<?php echo $movie['Series_Title'] ?>"/>
+                </form>
                 <input type="submit" name="btnAction" value="Submit Comment" class="btn btn-secondary">
                 </form>
             </div>

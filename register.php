@@ -71,10 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </script>    
   
   <style>
-    h2 {font-family: Impact; color: #F6BE00; text-align: center;}
+    h2 {font-size: 40px; font-family: Impact; color: #F6BE00; text-align: center;}
     b {color: white;}
     
-    .wrapper{ width: 360px; padding: 20px; }
+    .wrapper{ width: 360px; padding: 20px; margin: 0 auto;}
     
     </style>
 
@@ -89,15 +89,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="wrapper">
         <form action="register.php" method="post" id="register User">
 
-            <b>Username:</b> <input type="text" class="form-control" name="username">
-            <b>Email: </b> <input type="text" class="form-control" name="email">
-            <b>Password: </b> <input type="password" class="form-control" name="password">
-
-            <input type="submit" value="Register" name="btnAction" class="btn btn-secondary"
-            title = "register user" />
+            <input type="text" placeholder="Username" class="form-control" name="username"> <br>
+            <input type="text" placeholder="Email (@virginia.edu)" class="form-control" name="email"> <br>
+            <input type="password" placeholder="Password" class="form-control" name="password">
+            <br>
+            <div style="text-align: center;">
+                <input type="submit" value="Register" name="btnAction" class="btn btn-info"
+                title = "register user" />
+            </div>  
 
         </form>
     </div>
+
     <p style="font-size: 20px; color: white; margin-left: 25px">Already have an account? <a href="login.php">Log in here</a>.</p>
     </body>
+
+    <hr/>
 </html>

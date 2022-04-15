@@ -104,10 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </script>    
   
   <style>
-    h2 {font-family: Impact; color: #F6BE00; text-align: center;}
+    h2 {font-size: 40px; font-family: Impact; color: #F6BE00; text-align: center;}
     b {color: white;}
     
-    .wrapper{ width: 360px; padding: 20px; }
+    .wrapper{ margin: 0 auto; width: 360px; padding: 20px; }
     
     </style>
 
@@ -122,14 +122,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="wrapper">
         <form action="login.php" method="post" id="login User">
 
-            <b>Username:</b> <input type="text" class="form-control" name="username" id="username">
-            <b>Password: </b> <input type="password" class="form-control" name="password" id="password">
-
-            <input type="submit" value="Login" name="btnAction" class="btn btn-secondary"
-            title = "login user" />
+        <input type="text" placeholder="Username" class="form-control" name="username" id="username">
+            <br/>
+            <input type="password" placeholder="Password" class="form-control" name="password" id="password">
+            <br/>
+            <div style="text-align: center;">
+                <input type="submit" value="Login" name="btnAction" class="btn btn-info"
+                title = "login user" />
+            </div>
 
         </form>
     </div>
     <p style="font-size: 20px; color: white; margin-left: 25px">Don't have an account? <a href="register.php">Sign up here</a>.</p>
     </body>
+    <hr/>
 </html>
