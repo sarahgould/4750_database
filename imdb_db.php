@@ -58,6 +58,33 @@ function getComment_byTitle($title) {
     return $results;
 }
 
+function getComment_byUser($username) {
+    // db handler
+    global $db;
+    // sql
+    $query = "select * from Comment where username = :username";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+    $statement->execute();
+
+    $results = $statement->fetchAll();   
+    $statement->closeCursor();
+    return $results;
+}
+
+function deleteComment($title, $username) {
+    global $db;
+    $query = "delete from Comment where title = :title and username = :username";
+
+    $statement = $db->prepare($query);
+	$statement->bindValue(':title', $title);
+    $statement->bindValue(':username', $username);
+	$statement->execute();
+
+	$statement->closeCursor();
+
+}
+
 function getAllMovies() {
 	global $db;
 	$query = "select * from Movies order by IMDB_Rating desc";

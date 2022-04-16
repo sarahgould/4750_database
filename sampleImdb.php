@@ -8,6 +8,7 @@ $movie_to_update = null;
 $movie_to_view = null;
 $open_menu = null;
 $search_tilte = null;
+$search_filter = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Add") {
@@ -125,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <hr/>
 
 <button style="margin-left:30px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#content" id="dropMenu">Add New Movie</button>
+
 <div id="content" class="collapse" style="margin-left: 20px; margin-right: 20px;">
     <form name="mainForm" action="sampleImdb.php" method="post">
         <br>
@@ -177,11 +179,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </div>
 
-
 <hr/>
-  <div style="text-align: right; margin-right: 25px">
-<h2 style="color: white; font-size: 20px">Logged in as: <?php echo htmlspecialchars($_SESSION["username"]); ?></h2>
-<a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+
+<div style="text-align: right; margin-right: 25px">
+    <h2 style="color: white; font-size: 20px">Logged in as: <?php echo htmlspecialchars($_SESSION["username"]); ?></h2>
+    <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+    <a href="commentView.php" class="btn btn-info">See my comments</a>
 </div>
 
     <h2 style="text-align: center; font-size: 40px;">All Movies</h2>
