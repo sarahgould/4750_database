@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "View Movie Page") {
     $movie_to_view = getMovie_byTitle($_POST['movie_to_view']);
     setcookie("movie_to_view", $movie_to_view['Series_Title']);
-    header("Location: movieView.php");
+    header("Location: movieView");
   }
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Delete Movie") {
     deleteMovie($_POST['movie_to_delete']);
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="sarah gould">
   <meta name="description" content="include some description about your page">  
     
-  <title>Sample IMDB</title>
+  <title>IMDB</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <h2 style="text-align: center; font-size: 40px;">All Movies</h2>
     <hr/>
-    <form action="sampleImdb.php" method="post" id="searchMovie">
+    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="searchMovie">
         <b>Search by Series Title: 
             <input name="titleFilter" type="text" style="color: black;" 
                     placeholder="Search Here"> </b>
@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Director: <?php echo $movie['Director']; ?> <br>
         <div>
             <div style="display:inline-block;">
-                <form action="sampleImdb.php" method="post" id="updateMovie">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="updateMovie">
                     <!-- <button name="btnAction" value="Update Movie" type="submit" class="btn btn-info" data-toggle="collapse" data-target="#content">Update Movie</button> -->
                     <input type="submit" value="Update Movie" name="btnAction"
                         class="btn btn-info" />
@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </form>
             </div>
             <div style="display:inline-block;">
-                <form action="sampleImdb.php" method="post">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                 <input type="submit" value="View Movie Page" name="btnAction"
                     class="btn btn-info" />
                 <input type="hidden" name="movie_to_view" 
@@ -232,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </form>
             </div>
             <div style="display:inline-block; margin-bottom: 5px; margin-top:10px;" >
-                <form action="sampleImdb.php" method="post">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                 <input type="submit" value="Delete Movie" name="btnAction"
                     class="btn btn-danger" />
                 <input type="hidden" name="movie_to_delete" 
@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div>
             <button style="margin-left: 0px; width: 150px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $i; ?>">Comment on Movie</button>
             <div id="<?php echo $i; ?>" class="collapse">
-            <form action="sampleImdb.php" method="post" id="submit Comment">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="submit Comment">
                 <h5 style="color:black;">Title: <h5>
                 <input type="text" class="form-control" name="commentTitle">
                 <h5 style="color:black;">Content: <h5>

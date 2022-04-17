@@ -92,14 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Title:    <?php echo $comment['title'] ?> <br> </div>
             Movie Name: <?php echo $comment['Series_Title'] ?> <br>
             Content: <?php echo $comment['content'] ?>
-            <form action="commentView.php" method="post">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                 <input type="submit" value="Delete" name="btnAction" class="btn btn-danger" />
                 <input type="hidden" name="comment_to_delete" value="<?php echo $comment['title'] ?>" />      
             </form></td> 
         </div>
     <?php endforeach; ?> -->
 
-    <form action="movieView.php"method="post">
+    <form action="<?php $_SERVER['PHP_SELF'] ?>"method="post">
         <input style="margin: 0 auto; display: block;" type="submit" value="Back to Home" name="btnAction" 
         class="btn btn-info" title="back home" />
     </form>

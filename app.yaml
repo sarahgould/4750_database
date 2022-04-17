@@ -1,7 +1,30 @@
 # Use the PHP 7.3 runtime by replacing "php72" below with "php73"
-runtime: php74
+runtime: php73
 
 # Defaults to "serve index.php" 
-entrypoint: serve login.php
 
 # If your main page is index.php, comment the above entrypoint setting 
+
+env_variables:
+  APP_DEBUG: true
+  LOG_CHANNEL: stderr
+  APP_STORAGE: /tmp
+
+handlers:
+- url: /.*
+  script: login.php
+
+- url: /sampleImdb.php
+  static_dir: sampleImdb.php
+
+- url: /movieView.php
+  script: movieView.php
+
+- url: /logout.php
+  script: logout.php
+
+- url: /register.php
+  script: register.php       
+
+- url: /commentView.php
+  script: commentView.php  

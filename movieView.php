@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="sarah gould">
   <meta name="description" content="include some description about your page">  
     
-  <title>Sample IMDB</title>
+  <title>IMDB Movie</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-info" data-toggle="collapse" data-target="#genreSubmit" id="dropMenu">Add Genre</button>
                 <br>
                 <div id="genreSubmit" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Type: </div>    
                             <div style="display: inline-block;">
@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-danger" data-toggle="collapse" data-target="#genreDelete" id="dropMenu">Delete Genre</button>
                 <br>
                 <div id="genreDelete" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Type: </div>    
                             <div style="display: inline-block;">
@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-info" data-toggle="collapse" data-target="#starSubmit" id="dropMenu">Add Star</button>
                 <br>
                 <div id="starSubmit" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Star Name: </div>    
                             <div style="display: inline-block;">
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-danger" data-toggle="collapse" data-target="#starDelete" id="dropMenu">Delete Star</button>
                 <br>
                 <div id="starDelete" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Star Name: </div>    
                             <div style="display: inline-block;">
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-info" data-toggle="collapse" data-target="#posterAdd" id="dropMenu">Embed Poster</button>
                 <br>
                 <div id="posterAdd" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Poster Link: </div>    
                             <div style="display: inline-block;">
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="button" style="margin-left: 100px; margin-right: 100px;" class="btn btn-danger" data-toggle="collapse" data-target="#posterDelete" id="dropMenu">Remove Poster</button>
                 <br>
                 <div id="posterDelete" class="collapse">
-                    <form action="movieView.php" method="post">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <div>
                             <div style="display: inline-block;"> Poster Link: </div>    
                             <div style="display: inline-block;">
@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <hr/>
 
 
-    <form action="movieView.php"method="post">
+    <form action="<?php $_SERVER['PHP_SELF'] ?>"method="post">
         <input style="margin: 0 auto; display: block;" type="submit" value="Back to Home" name="btnAction" 
         class="btn btn-info" title="back home" />
     </form>

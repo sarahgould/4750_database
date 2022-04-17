@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="sarah gould">
   <meta name="description" content="include some description about your page">  
     
-  <title>Sample IMDB</title>
+  <title>IMDB</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <h2 > Login to IMDB Movie Guide!</h2>
     <div class="wrapper">
-        <form action="login.php" method="post" id="login User">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="login User">
 
         <input type="text" placeholder="Username" class="form-control" name="username" id="username">
             <br/>
