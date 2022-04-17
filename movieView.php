@@ -12,7 +12,7 @@ $list_of_comments = getComment_byTitle($title);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Back to Home") {
-        header("Location: sampleImdb.php");
+        header("Location: /sampleImdb.php");
     }
     if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Submit Star") {
         addStarName($_POST['starName'], $title);

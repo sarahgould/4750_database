@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "View Movie Page") {
     $movie_to_view = getMovie_byTitle($_POST['movie_to_view']);
     setcookie("movie_to_view", $movie_to_view['Series_Title']);
-    header("Location: movieView");
+    header("Location: /movieView.php");
   }
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Delete Movie") {
     deleteMovie($_POST['movie_to_delete']);

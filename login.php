@@ -7,8 +7,7 @@ require('imdb_db.php');
 
 <div style="margin-left: 25px">
 <?php
-
-
+ob_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Login") {
             global $db;
@@ -29,10 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $count = $row['cntUser'];
                 
                 if(password_verify($password, $hashed_password)){
-                if($count > 0){
+                    if($count > 0){
                     
                     $_SESSION['username'] = $uname;
-                    header('Location: sampleImdb.php');
+                    echo "<script> window.location.href = 'sampleImdb.php'; </script>";
+                    exit();
                     }
                 }else{
                     echo "<p style='font-size: 20px; color: white'>" . "Invalid Username and/or Password" . "</p>";

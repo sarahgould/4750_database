@@ -1,9 +1,12 @@
 <?php
 switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {
-   case '/':                   // URL (without file name) to a default screen
+   case '/':                  
       require 'login.php';
       break; 
-   case '/sampleImdb.php':     // if you plan to also allow a URL with the file name 
+   case '/login.php':                  
+      require 'login.php';
+      break; 
+   case '/sampleImdb.php':    
       require 'sampleImdb.php';
       break;              
    case '/movieView.php':

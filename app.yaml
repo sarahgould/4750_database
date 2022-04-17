@@ -1,26 +1,2 @@
 # Use the PHP 7.3 runtime by replacing "php72" below with "php73"
-runtime: php73
-
-env_variables:
-  APP_DEBUG: true
-  LOG_CHANNEL: stderr
-  APP_STORAGE: /tmp
-
-handlers:
-- url: /.*
-  script: login.php
-
-- url: /sampleImdb.php
-  static_dir: sampleImdb.php
-
-- url: /movieView.php
-  script: movieView.php
-
-- url: /logout.php
-  script: logout.php
-
-- url: /register.php
-  script: register.php       
-
-- url: /commentView.php
-  script: commentView.php  
+runtime: php74
