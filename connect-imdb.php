@@ -2,11 +2,11 @@
 
 session_start();
 
-$username = 'root';                      // or your username
-$password = 'db4750password';        // or your password
-$host = 'cs4750db-340617:us-east4:db-project';       // projectID = cs4750, SQL instance ID = db-demo
-$dbname = 'sjg7egt';                   // database name = guestbook
-$dsn = "mysql:unix_socket=/cloudsql/cs4750db-340617:us-east4:db-project;dbname=sjg7egt";
+$username = 'sjg7egt';
+$password = 'Winter2022!!';
+$host = 'mysql01.cs.virginia.edu';
+$dbname = 'sjg7egt';
+$dsn = "mysql:host=$host;dbname=$dbname";  
 
 $link = mysqli_connect($host, $username, $password, $dbname);
 

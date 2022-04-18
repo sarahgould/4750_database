@@ -16,8 +16,8 @@ switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {
         require 'logout.php';
         break;  
     case '/commentView.php':
-            require 'commentView.php';
-            break;
+         require 'commentView.php';
+         break;
     case '/register.php':
         require 'register.php';
         break;

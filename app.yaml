@@ -1,2 +1,2 @@
 # Use the PHP 7.3 runtime by replacing "php72" below with "php73"
-runtime: php74
+runtime: php73

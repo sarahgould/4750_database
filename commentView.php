@@ -6,7 +6,7 @@ $list_of_comments_by_user = getComment_byUser($_SESSION['username']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Back to Home") {
-        header("Location: sampleImdb.php");
+        echo "<script> window.location.href = 'sampleImdb.php'; </script>";
     }
     else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Delete") {
         deleteComment($_POST['comment_to_delete'], $_SESSION['username']);

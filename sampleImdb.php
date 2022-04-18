@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "View Movie Page") {
     $movie_to_view = getMovie_byTitle($_POST['movie_to_view']);
     setcookie("movie_to_view", $movie_to_view['Series_Title']);
-    header("Location: /movieView.php");
+    echo "<script> window.location.href = 'movieView.php'; </script>";
   }
   else if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Delete Movie") {
     deleteMovie($_POST['movie_to_delete']);
@@ -118,8 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <div class="header">
-    <img src="IMDB-Logo.png" alt="IMDb logo" width="125" height="100" style="float:left;">
-    <h1 style="color: #F6BE00; position: relative; top: 30px; font-family: Impact; font-size: 45px;">Movies Guide</h1>
+    <h1 style="margin-left:30px; color: #F6BE00; position: relative; top: 30px; font-family: Impact; font-size: 45px;">IMDB Movies Guide</h1>
 </div>
 <br>
 <br>
@@ -156,6 +155,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 />
             </div>
             <div style="display:inline-block;">
+
+
+
+
             <h5>Rating:</h5>
             <input type="number" class="form-control" name="rating" step="0.1" required min="0" max="10"
                 value="<?php if ($movie_to_update!=null) echo $movie_to_update['IMDB_Rating'] ?>"

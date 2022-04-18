@@ -28,7 +28,7 @@ function registerUser($username, $email, $password) {
     values('" . $username . "', '" . $email . "', '" . $password . "')";
 
     $statement = $db->query($query);
-    header('Location: /login.php');
+    echo "<script> window.location.href = 'login.php'; </script>";
     }
 }
 

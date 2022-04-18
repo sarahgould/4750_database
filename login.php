@@ -7,13 +7,15 @@ require('imdb_db.php');
 
 <div style="margin-left: 25px">
 <?php
-ob_start();
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Login") {
             global $db;
+
             $uname = mysqli_real_escape_string($link,$_POST['username']);
             $password = mysqli_real_escape_string($link,$_POST['password']);
-          
+
             $query = "select * from User where username='".$uname."'";
             $res = mysqli_query($link,$query);
             $userrow = mysqli_fetch_array($res);
@@ -30,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if(password_verify($password, $hashed_password)){
                     if($count > 0){
                     
+
                     $_SESSION['username'] = $uname;
                     echo "<script> window.location.href = 'sampleImdb.php'; </script>";
                     exit();
@@ -38,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<p style='font-size: 20px; color: white'>" . "Invalid Username and/or Password" . "</p>";
                 }   
 
-            }   
+            } else {
+                echo "<p style='font-size: 20px; color: white'>" . "Enter a Username and Password!" . "</p>";
+            }
 
         }   
 }
