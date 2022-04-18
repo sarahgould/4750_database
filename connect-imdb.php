@@ -1,35 +1,7 @@
 <?php
-// Remember to start the database server (or GCP SQL instance) before trying to connect to it
 
-////////////////////////////////////////////
-/** S22, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-// $username = 'root';                      // or your username
-// $password = 'your-root-password';        // or your password
-// $host = 'cs4750:us-east4:db-demo';       // projectID = cs4750, SQL instance ID = db-demo
-// $dbname = 'guestbook';                   // database name = guestbook
-// $dsn = "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
-
-// to get instance connection name, go to GCP SQL overview page
-////////////////////////////////////////////
-
-/** S22, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-// $username = 'root';                      // or your username
-// $password = 'your-root-password';        // or your password
-// $host = 'cs4750:us-east4:db-demo';       // projectID = cs4750, SQL instance ID = db-demo
-// $dbname = 'guestbook';                   // database name = guestbook
-// $dsn = "mysql:host=your-SQL-public-IP-address;dbname=$dbname";       // connect PHP (XAMPP) to DB (GCP)
-
-// to get public IP addres of the SQL instance, go to GCP SQL overview page
-
-// To connect from a local PHP to GCP SQL instance, need to add authorized network
-// to allow your machine to connect to the SQL instance. 
-// 1. Get IP of the computer that will connect to the SQL instance
-//    (use http://ipv4.whatismyv6.com/ to find the IP address)
-// 2. On the cloud SQL connections page, add authorized networks, enter the IP address
-////////////////////////////////////////////
-
-/** S22, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on local XAMPP) **/
 session_start();
+
 $username = 'sjg7egt';
 $password = 'Winter2022!!';
 $host = 'mysql01.cs.virginia.edu';
@@ -37,29 +9,6 @@ $dbname = 'sjg7egt';
 $dsn = "mysql:host=$host;dbname=$dbname";  
 
 $link = mysqli_connect($host, $username, $password, $dbname);
-////////////////////////////////////////////
-
- 
-/** S22, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
-// $username = 'your-computingID'; 
-// $password = 'your-password';
-// $host = 'mysql01.cs.virginia.edu';
-// $dbname = 'your-computingID';
-// $dsn = "mysql:host=$host;dbname=$dbname";     
-
-////////////////////////////////////////////
-
-// DSN (Data Source Name) specifies the host computer for the MySQL datbase 
-// and the name of the database. If the MySQL datbase is running on the same server
-// as PHP, use the localhost keyword to specify the host computer
-
-// To connect to a MySQL database, need three arguments: 
-// - specify a DSN, username, and password
-
-// Create an instance of PDO (PHP Data Objects) which connects to a MySQL database
-// (PDO defines an interface for accessing databases)
-// Syntax: 
-//    new PDO(dsn, username, password);
 
 
 /** connect to the database **/

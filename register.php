@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="sarah gould">
   <meta name="description" content="include some description about your page">  
     
-  <title>Sample IMDB</title>
+  <title>IMDB</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <h2 > Weclome to IMDB Movie Guide!</h2>
     <div class="wrapper">
-        <form action="register.php" method="post" id="register User">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="register User">
 
             <input type="text" placeholder="Username" class="form-control" name="username"> <br>
             <input type="text" placeholder="Email (@virginia.edu)" class="form-control" name="email"> <br>

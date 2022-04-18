@@ -12,9 +12,10 @@ require('imdb_db.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(!empty($_POST['btnAction']) && $_POST['btnAction'] == "Login") {
             global $db;
+
             $uname = mysqli_real_escape_string($link,$_POST['username']);
             $password = mysqli_real_escape_string($link,$_POST['password']);
-          
+
             $query = "select * from User where username='".$uname."'";
             $res = mysqli_query($link,$query);
             $userrow = mysqli_fetch_array($res);
@@ -29,16 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $count = $row['cntUser'];
                 
                 if(password_verify($password, $hashed_password)){
-                if($count > 0){
+                    if($count > 0){
                     
+
                     $_SESSION['username'] = $uname;
-                    header('Location: sampleImdb.php');
+                    echo "<script> window.location.href = 'sampleImdb.php'; </script>";
+                    exit();
                     }
                 }else{
                     echo "<p style='font-size: 20px; color: white'>" . "Invalid Username and/or Password" . "</p>";
                 }   
 
-            }   
+            } else {
+                echo "<p style='font-size: 20px; color: white'>" . "Enter a Username and Password!" . "</p>";
+            }
 
         }   
 }
@@ -64,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="sarah gould">
   <meta name="description" content="include some description about your page">  
     
-  <title>Sample IMDB</title>
+  <title>IMDB</title>
   
   <!-- 3. link bootstrap -->
   <!-- if you choose to use CDN for CSS bootstrap -->  
@@ -120,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <h2 > Login to IMDB Movie Guide!</h2>
     <div class="wrapper">
-        <form action="login.php" method="post" id="login User">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" id="login User">
 
         <input type="text" placeholder="Username" class="form-control" name="username" id="username">
             <br/>
